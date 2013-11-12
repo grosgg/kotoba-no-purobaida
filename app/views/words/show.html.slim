@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong English:
+  = @word.english
+p
+  strong French:
+  = @word.french
+p
+  strong Hiragana:
+  = @word.hiragana
+p
+  strong Katakana:
+  = @word.katakana
+p
+  strong Kanji:
+  = @word.kanji
+p
+  strong Tags:
+  = @word.tags
+
+= link_to 'Edit', edit_word_path(@word)
+'|
+= link_to 'Back', words_path
