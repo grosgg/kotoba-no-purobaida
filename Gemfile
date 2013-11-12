@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-gem 'slim-rails', '2.0.3'
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem 'slim-rails', '~> 2.0.3'
+gem 'zurb-foundation', '~> 4.3.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
