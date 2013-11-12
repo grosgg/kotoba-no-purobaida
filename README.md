@@ -1,4 +1,4 @@
-jisho-no-purobaida
+kotoba-no-purobaida
 ==================
 
 Backend for my dictionary project
