@@ -1,23 +1,25 @@
-p#notice = notice
+- if notice
+  div#notice.alert-box = notice
 
-p
-  strong English: 
-  = @word.english
-p
-  strong French: 
-  = @word.french
-p
-  strong Hiragana: 
-  = @word.hiragana
-p
-  strong Katakana: 
-  = @word.katakana
-p
-  strong Kanji: 
-  = @word.kanji
-p
-  strong Tags: 
-  = @word.tags
+h2 = @word.english
+
+div.row
+  div.large-3.columns
+    p
+      strong French: 
+      = @word.french
+
+    - if @word.kanji && !@word.kanji.empty?
+      p
+        strong Hiragana: 
+        = @word.hiragana
+
+    p
+      strong Tags: 
+      = @word.tags_list
+
+  div.large-9.columns.big-word
+    = @big_word
 
 = link_to 'Edit', edit_word_path(@word), :class => 'small secondary button'
 ' 

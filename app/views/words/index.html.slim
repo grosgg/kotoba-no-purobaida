@@ -1,29 +1,36 @@
-h1 Listing words
+div.large-8.columns
+  h1 Listing words
 
-table
-  tr
-    th English
-    th French
-    th Hiragana
-    th Katakana
-    th Kanji
-    th Tags
-    th
-    th
-    th
-
-  - @words.each do |word|
+  table
     tr
-      td = word.english
-      td = word.french
-      td = word.hiragana
-      td = word.katakana
-      td = word.kanji
-      td = word.tags
-      td = link_to 'Show', word
-      td = link_to 'Edit', edit_word_path(word)
-      td = link_to 'Destroy', word, :confirm => 'Are you sure?', :method => :delete
+      th English
+      th French
+      th Hiragana
+      th Katakana
+      th Kanji
+      th Tags
+      th
+      th
+      th
 
-br
+    - @words.each do |word|
+      tr
+        td = word.english
+        td = word.french
+        td = word.hiragana
+        td = word.katakana
+        td = word.kanji
+        td = word.tags_list
+        td = link_to 'Show', word
+        td = link_to 'Edit', edit_word_path(word)
+        td = link_to 'Destroy', word, :confirm => 'Are you sure?', :method => :delete
 
-= link_to 'New Word', new_word_path, :class => 'button'
+  br
+
+  = link_to 'New Word', new_word_path, :class => 'button'
+
+div.large-4.columns
+  h2 About
+  p Watashi no Jisho / Kotoba no Purobaida is a personal dictionary project. Its goal is to provide you vocabulary cards, exercice sheets and multiple choice quizzes. The content is user built so you can focus on learning the words and expressions you already know.
+
+  p This platform is the application backend. Here you will enter the new words you have learned. In a second time, you can update the word list on the frontend and take some exercices. Both parts are made to work independently. The frontend will only refresh the word list when you ask to. That way, you don't always need a internet connection in order to practice.

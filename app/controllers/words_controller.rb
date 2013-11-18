@@ -10,6 +10,9 @@ class WordsController < ApplicationController
   # GET /words/1
   # GET /words/1.json
   def show
+    @big_word = @word.hiragana if @word.hiragana and !@word.hiragana.empty?
+    @big_word = @word.katakana if @word.katakana and !@word.katakana.empty?
+    @big_word = @word.kanji if @word.kanji and !@word.kanji.empty?
   end
 
   # GET /words/new
@@ -69,6 +72,6 @@ class WordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
-      params.require(:word).permit(:english, :french, :hiragana, :katakana, :kanji, :tags)
+      params.require(:word).permit(:english, :french, :hiragana, :katakana, :kanji, :tags, :tags_list)
     end
 end
