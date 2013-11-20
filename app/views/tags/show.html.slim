@@ -1,0 +1,12 @@
+- if notice
+  div#notice.alert-box = notice
+
+h2 = @tag.name
+
+p
+  strong Count: 
+  = @tag.count
+
+= link_to 'Edit', edit_tag_path(@tag), :class => 'small secondary button'
+' 
+= link_to 'Back', tags_path, :class => 'small secondary button'
