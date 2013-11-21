@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.1'
 
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem 'devise', '~> 3.2.1'
 gem 'slim-rails', '~> 2.0.3'
 gem 'zurb-foundation', '~> 4.3.2'
 

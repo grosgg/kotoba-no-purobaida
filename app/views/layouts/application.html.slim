@@ -23,6 +23,8 @@ html lang="en"
             a href="#" Kotoba no Purobaida
 
     div.row
+      - if notice
+        div#notice.alert-box = notice
       = yield
 
     = javascript_include_tag "application"
