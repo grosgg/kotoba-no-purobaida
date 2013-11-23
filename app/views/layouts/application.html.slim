@@ -20,11 +20,20 @@ html lang="en"
       ul.title-area
         li.name
           h1 
-            a href="#" Kotoba no Purobaida
+            a href=root_path Kotoba no Purobaida
+      section.top-bar-section
+        ul.right
+          li
+            = link_to('Logout', destroy_user_session_path, :method => :delete)
+        ul.left
+          li
+            a href=words_path Words
+          li
+            a href=tags_path Tags
 
     div.row
-      - if notice
-        div#notice.alert-box = notice
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: "#{name} alert-box"
       = yield
 
     = javascript_include_tag "application"

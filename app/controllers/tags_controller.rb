@@ -1,15 +1,17 @@
 class TagsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
+    @tags = Tag.where(:user => current_user)
   end
 
   # GET /tags/1
   # GET /tags/1.json
   def show
+    check_access
   end
 
   # GET /tags/new
@@ -19,12 +21,14 @@ class TagsController < ApplicationController
 
   # GET /tags/1/edit
   def edit
+    check_access
   end
 
   # POST /tags
   # POST /tags.json
   def create
     @tag = Tag.new(tag_params)
+    @word.user = current_user
 
     respond_to do |format|
       if @tag.save
@@ -40,6 +44,7 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   # PATCH/PUT /tags/1.json
   def update
+    check_access
     respond_to do |format|
       if @tag.update(tag_params)
         format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
@@ -54,6 +59,7 @@ class TagsController < ApplicationController
   # DELETE /tags/1
   # DELETE /tags/1.json
   def destroy
+    check_access
     @tag.destroy
     respond_to do |format|
       format.html { redirect_to tags_url }
@@ -70,5 +76,9 @@ class TagsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_params
       params.require(:tag).permit(:name, :count)
+    end
+
+    def check_access
+      redirect_to tags_path, alert: "This tag doesn't exist." if @tag.user != current_user
     end
 end

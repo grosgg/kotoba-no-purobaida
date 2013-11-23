@@ -6,6 +6,7 @@ class Word
   field :katakana, type: String
   field :kanji, type: String
   field :tags, type: Array, default: []
+  belongs_to :user
 
   def tags_list=(arg)
     self.tags = arg.split(',').map { |v| v.strip }

@@ -1,15 +1,17 @@
 class WordsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_word, only: [:show, :edit, :update, :destroy]
 
   # GET /words
   # GET /words.json
   def index
-    @words = Word.all
+    @words = Word.where(:user => current_user)
   end
 
   # GET /words/1
   # GET /words/1.json
   def show
+    check_access
     @big_word = @word.hiragana if @word.hiragana and !@word.hiragana.empty?
     @big_word = @word.katakana if @word.katakana and !@word.katakana.empty?
     @big_word = @word.kanji if @word.kanji and !@word.kanji.empty?
@@ -22,12 +24,14 @@ class WordsController < ApplicationController
 
   # GET /words/1/edit
   def edit
+    check_access
   end
 
   # POST /words
   # POST /words.json
   def create
     @word = Word.new(word_params)
+    @word.user = current_user
 
     respond_to do |format|
       if @word.save
@@ -43,6 +47,7 @@ class WordsController < ApplicationController
   # PATCH/PUT /words/1
   # PATCH/PUT /words/1.json
   def update
+    check_access
     respond_to do |format|
       if @word.update(word_params)
         format.html { redirect_to @word, notice: 'Word was successfully updated.' }
@@ -57,6 +62,7 @@ class WordsController < ApplicationController
   # DELETE /words/1
   # DELETE /words/1.json
   def destroy
+    check_access
     @word.destroy
     respond_to do |format|
       format.html { redirect_to words_url }
@@ -73,5 +79,9 @@ class WordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
       params.require(:word).permit(:english, :french, :hiragana, :katakana, :kanji, :tags, :tags_list)
+    end
+
+    def check_access
+      redirect_to words_path, alert: "This word doesn't exist." if @word.user != current_user
     end
 end
