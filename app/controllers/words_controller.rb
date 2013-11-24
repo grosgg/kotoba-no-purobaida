@@ -102,10 +102,7 @@ class WordsController < ApplicationController
 
       @word.tags.each do |tag_name|
         puts 'add '+tag_name
-        tag = Tag.where(:name => tag_name, :user => current_user).first
-        if !tag
-          tag = Tag.create(:name => tag_name, :user => current_user, :count => 0)
-        end
+        tag = Tag.find_or_create_by(:name => tag_name, :user => current_user)
         tag.count+=1
         tag.save
       end
