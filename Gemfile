@@ -35,7 +35,8 @@ group :doc do
 end
 
 group :test do
-  gem "rspec-rails"
+  gem 'rspec-rails'
+  gem 'mongoid-rspec', '~> 1.9.0'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
 end

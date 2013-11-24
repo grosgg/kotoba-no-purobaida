@@ -7,6 +7,7 @@ class Word
   field :kanji, type: String
   field :tags, type: Array, default: []
   belongs_to :user
+  validates_presence_of :english
 
   def tags_list=(arg)
     self.tags = arg.split(',').map { |v| v.strip }

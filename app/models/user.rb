@@ -5,7 +5,7 @@ class User
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 
   ## Custom fields
-  field :name
+  field :name, :type => String
   validates_presence_of :name
 
   ## Database authenticatable
