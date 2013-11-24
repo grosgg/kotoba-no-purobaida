@@ -35,6 +35,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.save
+        handle_tags
         format.html { redirect_to @word, notice: 'Word was successfully created.' }
         format.json { render action: 'show', status: :created, location: @word }
       else
@@ -48,8 +49,10 @@ class WordsController < ApplicationController
   # PATCH/PUT /words/1.json
   def update
     check_access
+    tags_before_change = @word.tags
     respond_to do |format|
       if @word.update(word_params)
+        handle_tags(tags_before_change)
         format.html { redirect_to @word, notice: 'Word was successfully updated.' }
         format.json { head :no_content }
       else
@@ -83,5 +86,28 @@ class WordsController < ApplicationController
 
     def check_access
       redirect_to words_path, alert: "This word doesn't exist." if @word.user != current_user
+    end
+
+    def handle_tags(tags_before_change = false)
+      if tags_before_change
+        tags_before_change.each do |tag_name|
+          puts 'remove '+tag_name
+          tag = Tag.where(:name => tag_name, :user => current_user).first
+          if tag
+            tag.count-=1
+            tag.save
+          end
+        end
+      end
+
+      @word.tags.each do |tag_name|
+        puts 'add '+tag_name
+        tag = Tag.where(:name => tag_name, :user => current_user).first
+        if !tag
+          tag = Tag.create(:name => tag_name, :user => current_user, :count => 0)
+        end
+        tag.count+=1
+        tag.save
+      end
     end
 end

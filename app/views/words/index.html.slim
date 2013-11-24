@@ -23,7 +23,7 @@ div.large-8.columns
         td = word.tags_list
         td = link_to 'Show', word
         td = link_to 'Edit', edit_word_path(word)
-        td = link_to 'Destroy', word, :confirm => 'Are you sure?', :method => :delete
+        td = link_to 'Destroy', word, data: { confirm: 'Are you sure?' }, :method => :delete
 
   br
 
