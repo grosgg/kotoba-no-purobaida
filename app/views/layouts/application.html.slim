@@ -21,17 +21,18 @@ html lang="en"
         li.name
           h1 
             a href=root_path Kotoba no Purobaida
-      section.top-bar-section
-        ul.right
-          li
-            = link_to('Profile', edit_user_registration_path)
-          li
-            = link_to('Logout', destroy_user_session_path, :method => :delete)
-        ul.left
-          li
-            a href=words_path Words
-          li
-            a href=tags_path Tags
+      - if current_user
+        section.top-bar-section
+          ul.right
+            li
+              = link_to('Profile', edit_user_registration_path)
+            li
+              = link_to('Logout', destroy_user_session_path, :method => :delete)
+          ul.left
+            li
+              a href=words_path Words
+            li
+              a href=tags_path Tags
 
     div.row
       - flash.each do |name, msg|

@@ -1,22 +1,26 @@
-h2 Sign in
-
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  div
-    = f.label :email
-    br
-    = f.email_field :email, :autofocus => true
-
-  div
-    = f.label :password
-    br
-    = f.password_field :password
-
-  - if devise_mapping.rememberable?
+div.large-6.columns
+  h2 Sign in
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     div
-      = f.check_box :remember_me
-      | 
-      = f.label :remember_me
+      = f.label :email
+      br
+      = f.email_field :email, :autofocus => true
 
-  div = f.submit "Sign in", :class => 'small button'
+    div
+      = f.label :password
+      br
+      = f.password_field :password
 
-= render "devise/shared/links"
+    - if devise_mapping.rememberable?
+      div
+        = f.check_box :remember_me
+        | 
+        = f.label :remember_me
+
+    div = f.submit "Sign in", :class => 'small button'
+
+  = render "devise/shared/links"
+
+div.large-6.columns
+  h2 About
+  p Kotoba no Purobaida is a personal dictionary project. Its goal is to provide you vocabulary cards, exercice sheets and multiple choice quizzes. The content is user built so you can focus on learning the words and expressions you already know.
