@@ -1,0 +1,14 @@
+= form_tag(action: "create") do
+
+  .field
+    = label_tag :tags, "Tags"
+    = text_field_tag :tags
+  .field
+    = radio_button_tag :is_or, false
+    = label_tag :is_or_false, "And"
+    = radio_button_tag :is_or, true
+    = label_tag :is_or_false, "Or"
+  .field
+    = label_tag :pages
+    = text_field_tag :pages
+  .actions = submit_tag 'Generate', :class => 'small button'
