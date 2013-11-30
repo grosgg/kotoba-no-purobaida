@@ -1,0 +1,13 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+
+  body 
+    h1 Study Sheet
+
+    - for row in @word_grid do
+      div.row
+        - for cell in row do
+          div = cell ? cell : ''
+        div style="border-bottom: 1px solid black"

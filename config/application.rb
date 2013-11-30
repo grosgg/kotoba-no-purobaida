@@ -26,5 +26,8 @@ module KotobaNoPurobaida
     # config.i18n.default_locale = :de
 
     config.filter_parameters += [:password, :password_confirmation]
+
+    # No need for this middleware
+    # config.middleware.use PDFKit::Middleware
   end
 end
