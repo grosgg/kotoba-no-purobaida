@@ -4,7 +4,7 @@ class Exercice
     @user = User.find(user_id)
     @tags = tags
     @is_or = is_or
-    @pages = pages
+    @pages = pages.to_i
     @type = type 
   end
 

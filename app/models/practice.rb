@@ -1,8 +1,8 @@
-class Study < Exercice
+class Practice < Exercice
 
   def generate
     puts tags
-    words = Word.where(:user => @user, :tags.in => @tags)
+    words = Word.where(:user => @user, :tags.in => @tags).limit(25*@pages)
     
     #TODO: Find a way to search words with all provided tags
     # if @is_or
@@ -18,11 +18,11 @@ class Study < Exercice
     word_grid = []
     words.each do |w|
       if w.katakana && !w.katakana.empty?
-        word_grid.push [w.katakana, '', w.english]
+        word_grid.push [w.katakana, w.english]
       elsif w.kanji && !w.kanji.empty?
-        word_grid.push [w.kanji, w.hiragana ? w.hiragana : '', w.english]
+        word_grid.push [w.hiragana ? w.kanji + '  /  ' + w.hiragana : w.kanji, w.english]
       else
-        word_grid.push [w.hiragana, '', w.english]
+        word_grid.push [w.hiragana, w.english]
       end
     end
     word_grid
