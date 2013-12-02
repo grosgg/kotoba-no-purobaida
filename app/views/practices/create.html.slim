@@ -4,10 +4,11 @@ html lang="en"
     meta charset="utf-8"
 
   body 
-    h1 Practice Sheet
+    div style="width:190mmm; height:267mm; overflow:hidden"
+      h2 Practice Sheet #{Date.today.to_s}
 
-    - for row in @word_grid do
-      div.row
-        - for cell in row do
-          div = cell ? cell : ''
-        div style="border-bottom: 1px solid black"
+      - for row in @word_grid do
+        div.row
+          - for cell in row do
+            span style="border: 1px solid black; padding:2px 5px; margin-right: 10px" = cell ? cell : ''
+          hr

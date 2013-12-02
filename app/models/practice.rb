@@ -20,7 +20,7 @@ class Practice < Exercice
       if w.katakana && !w.katakana.empty?
         word_grid.push [w.katakana, w.english]
       elsif w.kanji && !w.kanji.empty?
-        word_grid.push [w.hiragana ? w.kanji + '  /  ' + w.hiragana : w.kanji, w.english]
+        word_grid.push [w.hiragana, w.kanji, w.english]
       else
         word_grid.push [w.hiragana, w.english]
       end

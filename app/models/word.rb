@@ -9,6 +9,22 @@ class Word
   belongs_to :user
   validates_presence_of :english
 
+  scope :with_english, where(
+    :english.ne => "", :english.exists => true
+  )
+  scope :with_french, where(
+    :french.ne => "", :french.exists => true
+  )
+  scope :with_kanji, where(
+    :kanji.ne => "", :kanji.exists => true
+  )
+  scope :with_hiragana, where(
+    :hiragana.ne => "", :hiragana.exists => true
+  )
+  scope :with_katakana, where(
+    :katakana.ne => "", :katakana.exists => true
+  )
+
   def tags_list=(arg)
     self.tags = arg.split(',').map { |v| v.strip }
   end

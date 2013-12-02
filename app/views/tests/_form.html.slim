@@ -1,0 +1,22 @@
+= form_tag(action: "create") do
+
+  .field
+    = label_tag :from, "From"
+    = select_tag :from, options_for_select(@options, 'english')
+
+  .field
+    = label_tag :to, "To"
+    = select_tag :to, options_for_select(@options, 'hiragana')
+
+  .field
+    = label_tag :tags, "Tags"
+    = text_field_tag :tags
+  / .field
+  /   = radio_button_tag :is_or, false, :read_only => true
+  /   = label_tag :is_or_false, "And"
+  /   = radio_button_tag :is_or, true, :checked => true
+  /   = label_tag :is_or_false, "Or"
+  .field
+    = label_tag :pages
+    = number_field_tag :pages, 1
+  .actions = submit_tag 'Generate', :class => 'small button'

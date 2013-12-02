@@ -1,5 +1,12 @@
 PDFKit.configure do |config|
-  config.default_options = { page_size: 'A4', print_media_type: true }
+  config.default_options = {
+    page_size: 'A4',
+    print_media_type: true,
+    margin_top: '10mm',
+    margin_right: '10mm',
+    margin_bottom: '15mm',
+    margin_left: '10mm'
+  }
   if RUBY_PLATFORM =~ /linux/
     wkhtmltopdf_executable = 'wkhtmltopdf-amd64'
   else
