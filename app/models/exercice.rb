@@ -1,11 +1,12 @@
 class Exercice
+  include ActiveModel::Validations
 
-  def initialize(user_id, tags = [], is_or = true, pages = 1, type = 'hiragana')
+  def initialize(user_id, params)
     @user = User.find(user_id)
-    @tags = tags
-    @is_or = is_or
-    @pages = pages.to_i
-    @type = type 
+    # puts "!!! #{params}"
+    @tags = tags ? params[:tags] : []
+    @is_or = is_or ? params[:is_or] : true
+    @pages = pages ? params[:pages].to_i : 1
   end
 
   def tags

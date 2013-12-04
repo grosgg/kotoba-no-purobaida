@@ -2,7 +2,13 @@ class Practice < Exercice
 
   def generate
     puts tags
-    words = Word.where(:user => @user, :tags.in => @tags).limit(25*@pages)
+    words = Word.where(:user => @user)
+
+    unless @tags.empty?
+      words = words.where(:tags.in => @tags)
+    end
+
+    words = words.limit(25*@pages)
     
     #TODO: Find a way to search words with all provided tags
     # if @is_or

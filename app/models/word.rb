@@ -7,7 +7,10 @@ class Word
   field :kanji, type: String
   field :tags, type: Array, default: []
   belongs_to :user
+
   validates_presence_of :english
+  validates :hiragana, format: { with: /\p{Hiragana}/, message: "Only!" }, allow_blank: true
+  validates :katakana, format: { with: /\p{Katakana}/, message: "Only!" }, allow_blank: true
 
   scope :with_english, where(
     :english.ne => "", :english.exists => true
