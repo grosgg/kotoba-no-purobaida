@@ -5,7 +5,7 @@ class WordsController < ApplicationController
   # GET /words
   # GET /words.json
   def index
-    @words = Word.where(:user => current_user)
+    @words = Word.where(:user => current_user).desc(:_id)
   end
 
   # GET /words/1
