@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Exercice do
+  it 'should include ActiveModel::Validations' do
+    Exercice.should include(ActiveModel::Validations)
+  end
+
   context 'with no params provided' do
     it 'should not initialize' do
       expect { Exercice.new }.to raise_error

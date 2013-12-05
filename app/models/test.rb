@@ -2,7 +2,7 @@ class Test < Exercice
   attr_accessor :from, :to
   validate :languages_are_different
 
-  def initialize(user_id, params)
+  def initialize(user_id, params = {})
     super(user_id, params)
     @from = params[:from] ? params[:from] : 'english'
     @to = params[:to] ? params[:to] : 'english'
