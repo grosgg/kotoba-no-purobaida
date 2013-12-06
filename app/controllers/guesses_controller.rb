@@ -1,7 +1,7 @@
-class TestsController < ApplicationController
+class GuessesController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /tests/new
+  # GET /guesses/new
   def new
     @options = [
       ['English', 'english'],
@@ -12,11 +12,11 @@ class TestsController < ApplicationController
     ]
   end
 
-  # POST /tests
+  # POST /guesses
   def create
     tags = params[:tags].split(',').map { |v| v.strip }
 
-    test = Test.new(current_user.id, {
+    guess = Guess.new(current_user.id, {
       tags: tags,
       is_or: params[:is_or],
       pages: params[:pages],
@@ -24,18 +24,18 @@ class TestsController < ApplicationController
       to: params[:to]
     })
     
-    if !test.valid?
-      redirect_to new_test_path
+    if !guess.valid?
+      redirect_to new_guess_path
     end
 
-    @word_grid = test.generate()
-    @from = test.from
-    @to = test.to
+    @word_grid = guess.generate()
+    @from = guess.from
+    @to = guess.to
 
     kit = PDFKit.new(render_to_string layout: false)
     pdf = kit.to_pdf
 
-    send_data pdf, filename: "Test #{current_user.name} #{Date.today.to_s}.pdf", type: "application/pdf"
+    send_data pdf, filename: "Guess #{current_user.name} #{Date.today.to_s}.pdf", type: "application/pdf"
   end
 
 end
