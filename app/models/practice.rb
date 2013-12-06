@@ -1,7 +1,6 @@
 class Practice < Exercice
 
   def generate
-    puts tags
     words = Word.where(:user => @user)
 
     unless @tags.empty?
@@ -24,11 +23,11 @@ class Practice < Exercice
     word_grid = []
     words.each do |w|
       if w.katakana && !w.katakana.empty?
-        word_grid.push [w.katakana, w.english]
+        word_grid.push [w.english, w.katakana]
       elsif w.kanji && !w.kanji.empty?
-        word_grid.push [w.hiragana, w.kanji, w.english]
+        word_grid.push [w.english, w.hiragana, w.kanji]
       else
-        word_grid.push [w.hiragana, w.english]
+        word_grid.push [w.english, w.hiragana]
       end
     end
     word_grid

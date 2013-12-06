@@ -32,8 +32,5 @@ describe Exercice do
     it 'should respond to :pages' do
       exercice.should respond_to :pages
     end
-    it 'should respond to :type' do
-      exercice.should respond_to :type
-    end
   end
 end
