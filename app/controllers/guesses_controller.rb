@@ -24,9 +24,7 @@ class GuessesController < ApplicationController
       to: params[:to]
     })
     
-    if !guess.valid?
-      redirect_to new_guess_path
-    end
+    redirect_to new_guess_path if !guess.valid?
 
     @word_grid = guess.generate()
     @from = guess.from

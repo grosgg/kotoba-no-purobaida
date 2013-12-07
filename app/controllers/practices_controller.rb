@@ -20,6 +20,6 @@ class PracticesController < ApplicationController
     kit = PDFKit.new(render_to_string layout: false)
     pdf = kit.to_pdf
     
-    send_data pdf, filename: "Practice #{current_user.name} #{Date.today.to_s}.pdf", type: "application/pdf"
+    send_data pdf, filename: "Practice #{current_user.name} #{Date.today.to_s}.pdf", type: 'application/pdf'
   end
 end

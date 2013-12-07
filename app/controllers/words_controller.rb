@@ -91,7 +91,7 @@ class WordsController < ApplicationController
     def handle_tags(tags_before_change = false)
       if tags_before_change
         tags_before_change.each do |tag_name|
-          puts 'remove '+tag_name
+          Rails.logger.info "Remove tag '#{tag_name}' from word '#{@word.english}'"
           tag = Tag.where(:name => tag_name, :user => current_user).first
           if tag
             tag.count-=1
@@ -101,7 +101,7 @@ class WordsController < ApplicationController
       end
 
       @word.tags.each do |tag_name|
-        puts 'add '+tag_name
+        Rails.logger.info "Add tag '#{tag_name}' to  word '#{@word.english}'"
         tag = Tag.find_or_create_by(:name => tag_name, :user => current_user)
         tag.count+=1
         tag.save

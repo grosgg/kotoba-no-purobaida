@@ -8,10 +8,10 @@ class Guess < Exercice
     @to = params[:to] ? params[:to] : 'hiragana'
   end
 
-  def generate()
-    puts @from+' to '+@to
-    scope_from = 'with_'+@from
-    scope_to = 'with_'+@to
+  def generate
+    Rails.logger.info "#{@from} to #{@to}"
+    scope_from = "with_#{@from}"
+    scope_to = "with_#{@to}"
 
     words = Word
       .send(scope_from)
@@ -22,7 +22,7 @@ class Guess < Exercice
       words = words.where(:tags.in => @tags)
     end
 
-    words = words.to_a.shuffle.take(25*@pages)
+    words = words.to_a.shuffle.take(25 * @pages)
 
     word_grid = []
     words.each do |w|

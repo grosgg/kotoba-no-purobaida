@@ -9,8 +9,8 @@ class User
   validates_presence_of :name
 
   ## Database authenticatable
-  field :email,              :type => String, :default => ""
-  field :encrypted_password, :type => String, :default => ""
+  field :email,              :type => String, :default => ''
+  field :encrypted_password, :type => String, :default => ''
   validates_uniqueness_of :email
 
   ## Recoverable
