@@ -12,6 +12,8 @@ class Word
   validates :hiragana, format: { with: /\p{Hiragana}/, message: 'Only!' }, allow_blank: true
   validates :katakana, format: { with: /\p{Katakana}/, message: 'Only!' }, allow_blank: true
 
+  paginates_per 10
+
   scope :with_english, where(
     :english.ne => '', :english.exists => true
   )

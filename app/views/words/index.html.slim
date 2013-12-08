@@ -1,31 +1,38 @@
 div.large-12.columns
   h1 Listing words
 
-  table
-    tr
-      th English
-      th French
-      th Hiragana
-      th Katakana
-      th Kanji
-      th Tags
-      th
-      th
-      th
-
-    - @words.each do |word|
+  - if @words.blank?
+    p You don't have any word in you dictionnary.
+    
+  - else
+    table
       tr
-        td = word.english
-        td = word.french
-        td = word.hiragana
-        td = word.katakana
-        td = word.kanji
-        td = word.tags_list
-        td = link_to 'Show', word
-        td = link_to 'Edit', edit_word_path(word)
-        td = link_to 'Destroy', word, data: { confirm: 'Are you sure?' }, :method => :delete
+        th English
+        th French
+        th Hiragana
+        th Katakana
+        th Kanji
+        th Tags
+        th
+        th
+        th
 
-  br
+      - @words.each do |word|
+        tr
+          td = word.english
+          td = word.french
+          td = word.hiragana
+          td = word.katakana
+          td = word.kanji
+          td = word.tags_list
+          td = link_to 'Show', word
+          td = link_to 'Edit', edit_word_path(word)
+          td = link_to 'Destroy', word, data: { confirm: 'Are you sure?' }, :method => :delete
+
+    div.button-bar
+      ul.button-group
+        li = link_to_previous_page @words, 'Previous', :class => 'tiny secondary button'
+        li = link_to_next_page @words, 'Next', :class => 'tiny secondary button'
 
   = link_to 'New Word', new_word_path, :class => 'button'
 
