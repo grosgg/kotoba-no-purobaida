@@ -1,5 +1,7 @@
 class Word
-  include Mongoid::Document
+  include Mongoid::Document  
+  include Mongoid::Search
+
   field :english, type: String
   field :french, type: String
   field :hiragana, type: String
@@ -13,6 +15,7 @@ class Word
   validates :katakana, format: { with: /\p{Katakana}/, message: 'Only!' }, allow_blank: true
 
   paginates_per 10
+  search_in :english, :french
 
   scope :with_english, where(
     :english.ne => '', :english.exists => true

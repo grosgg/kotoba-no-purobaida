@@ -2,6 +2,7 @@ KotobaNoPurobaida::Application.routes.draw do
   devise_for :users
   resources :tags
   resources :words
+  post 'words/search', to: 'words#search', as: 'search_word'
 
   resources :practices, only: [:new, :create]
   resources :guesses, only: [:new, :create]

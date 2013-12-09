@@ -1,0 +1,30 @@
+div.large-12.columns
+  h1 Searching word: #{@search}
+
+  - if @words.blank?
+    p No result matching your criteria.
+    
+  - else
+    table
+      tr
+        th English
+        th French
+        th Hiragana
+        th Katakana
+        th Kanji
+        th Tags
+        th
+        th
+        th
+
+      - @words.each do |word|
+        tr
+          td = word.english
+          td = word.french
+          td = word.hiragana
+          td = word.katakana
+          td = word.kanji
+          td = word.tags_list
+          td = link_to 'Show', word
+          td = link_to 'Edit', edit_word_path(word)
+          td = link_to 'Destroy', word, data: { confirm: 'Are you sure?' }, :method => :delete

@@ -79,6 +79,7 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    fast-stemmer (1.0.2)
     foundation-rails (5.0.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -106,6 +107,9 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
+    mongoid_search (0.3.2)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
     moped (2.0.0.beta3)
       bson (~> 2.0.0.rc3)
       optionable (~> 0.1.1)
@@ -216,6 +220,7 @@ DEPENDENCIES
   kaminari (~> 0.15.0)
   mongoid!
   mongoid-rspec (~> 1.9.0)
+  mongoid_search (~> 0.3.2)
   pdfkit (~> 0.5.4)
   rails (= 4.0.1)
   rails_12factor
