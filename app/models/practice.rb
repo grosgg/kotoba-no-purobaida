@@ -7,7 +7,7 @@ class Practice < Exercice
       words = words.where(:tags.in => @tags)
     end
 
-    words = words.to_a.shuffle.take(25 * @pages)
+    words = words.to_a.shuffle.take(26 * @pages)
     
     #TODO: Find a way to search words with all provided tags
     # if @is_or

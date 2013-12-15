@@ -3,12 +3,12 @@ html lang="en"
   head
     meta charset="utf-8"
 
-  body 
-    div style="width:190mmm; height:267mm; overflow:hidden"
-      h2 Practice Sheet #{Date.today.to_s}
+  body
 
-      - for row in @word_grid do
-        div.row
-          - for cell in row do
-            span style="border: 1px solid black; padding:2px 5px; margin-right: 10px" = cell ? cell : ''
-          hr
+    - @word_grid.each_with_index do |row, index|
+      - if index % 26 == 0
+        h2 Practice Sheet #{Date.today.to_s} - Page #{index / 26 + 1}
+      div.row
+        - for cell in row do
+          span style="border: 1px solid black; padding:2px 5px; margin-right: 10px" = cell ? cell : ''
+        hr
