@@ -4,22 +4,11 @@ html lang="en"
     meta charset="utf-8"
 
   body 
-    / Guess page
-    div style="width:190mmm; height:267mm; overflow:hidden"
-      h2 Guess Sheet #{Date.today.to_s}
-      h4 Translate #{@from} to #{@to}
 
-      div
-        - @word_grid.each_with_index do |row, i|
-          div style="border:1px solid black; width:210px; margin:2px; padding:5px; float:left;"
-            p #{i+1}. #{row[0]}
-
-    / Solution page
-    div style="width:190mmm; height:267mm; overflow:hidden"
-      h2 Guess Sheet #{Date.today.to_s}
-      h4 Solutions
-
-      div
-        - @word_grid.each_with_index do |row, i|
-          div style="border:1px solid black; width:210px; margin:2px; padding:5px; float:left;"
-            p #{i+1}. #{row[1]}
+    - @word_grid.each_with_index do |row, index|
+      - if index % 28 == 0
+        h2 Guess Sheet #{Date.today.to_s} - Page #{index / 28 + 1}
+        h4 Translate #{@from} to #{@to}
+      div.row style="border-bottom: 1px solid black; height: 25px; margin: 6px; clear: both"
+        span style="border: 1px solid black; padding:2px 5px; float: left;" = row[0]
+        span style="border: 1px solid black; padding:2px 5px; float: right;" = row[1]

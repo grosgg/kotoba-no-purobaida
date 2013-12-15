@@ -22,7 +22,7 @@ class Guess < Exercice
       words = words.where(:tags.in => @tags)
     end
 
-    words = words.to_a.shuffle.take(25 * @pages)
+    words = words.to_a.shuffle.take(28 * @pages)
 
     word_grid = []
     words.each do |w|
