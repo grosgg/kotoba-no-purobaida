@@ -2,7 +2,6 @@ class Practice < Exercice
 
   def generate
     words = Word.where(:user => @user)
-    words = words * 20
 
     unless @tags.empty?
       words = words.where(:tags.in => @tags)
