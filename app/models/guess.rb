@@ -35,7 +35,7 @@ class Guess < Exercice
 
   def languages_are_different
     if @from == @to
-      errors.add(:base, 'Languages must be different')
+      errors.add(:base, 'Selected languages must be different')
     end
   end
 end
