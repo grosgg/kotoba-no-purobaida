@@ -2,12 +2,13 @@ class Practice < Exercice
 
   def generate
     words = Word.where(:user => @user)
+    words = words * 20
 
     unless @tags.empty?
       words = words.where(:tags.in => @tags)
     end
 
-    words = words.to_a.shuffle.take(26 * @pages)
+    words = words.to_a.shuffle.take(29 * @pages)
     
     #TODO: Find a way to search words with all provided tags
     # if @is_or

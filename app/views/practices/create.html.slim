@@ -6,9 +6,8 @@ html lang="en"
   body
 
     - @word_grid.each_with_index do |row, index|
-      - if index % 26 == 0
-        h2 Practice Sheet #{Date.today.to_s} - Page #{index / 26 + 1}
-      div.row
+      - if index % 29 == 0
+        h2 Practice Sheet #{Date.today.to_s} - Page #{index / 29 + 1}
+      div.row style="border-bottom: 1px solid black; height: 25px; margin: 6px;"
         - for cell in row do
           span style="border: 1px solid black; padding:2px 5px; margin-right: 10px" = cell ? cell : ''
-        hr
