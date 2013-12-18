@@ -1,0 +1,27 @@
+h1 Dashboard
+
+div.row
+  div.large-4.columns
+    h4 Recent Kanji
+    ul.inline-list
+      - for word in @recent_kanji
+        li = link_to word.kanji, word
+  div.large-4.columns
+    h4 Recent Katakana
+    ul.inline-list
+      - for word in @recent_katakana
+        li = link_to word.katakana, word
+  div.large-4.columns
+    h4 Recent Hiragana
+    ul.inline-list
+      - for word in @recent_hiragana
+        li = link_to word.hiragana, word
+
+div.row
+  div.large-12.columns
+    h2 Popular Tags
+    ul.inline-list
+      - for tag in @popular_tags
+        li
+          a href=""
+            span.label = "#{tag.name} (#{tag.count})"

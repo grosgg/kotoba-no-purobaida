@@ -32,6 +32,10 @@ class Word
   scope :with_katakana, where(
     :katakana.ne => '', :katakana.exists => true
   )
+  scope :without_kanji, any_of(
+    {:kanji.exists => false},
+    {:kanji => ''}
+  )
 
   def tags_list=(arg)
     self.tags = arg.split(',').map { |v| v.strip }

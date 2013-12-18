@@ -1,4 +1,5 @@
 KotobaNoPurobaida::Application.routes.draw do
+  get "dashboard/index"
   devise_for :users
   resources :tags
   resources :words
@@ -6,12 +7,13 @@ KotobaNoPurobaida::Application.routes.draw do
 
   resources :practices, only: [:new, :create]
   resources :guesses, only: [:new, :create]
+  resources :dashboard, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'words#index'
+  root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
