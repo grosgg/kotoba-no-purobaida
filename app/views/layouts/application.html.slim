@@ -32,8 +32,6 @@ html lang="en"
                   div.large-4.small-3.columns
                     = submit_tag 'Search', :class => 'button expand'
             li
-              = link_to('Profile', edit_user_registration_path)
-            li
               = link_to('Logout', destroy_user_session_path, :method => :delete)
           ul.left
             li
