@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.1.0'
 
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'devise', '~> 3.2.1'
-gem 'slim-rails', '~> 2.0.3'
+gem 'slim-rails', '~> 2.1.4'
 gem 'foundation-rails', '~> 5.0.2.0'
 
 gem "pdfkit", "~> 0.5.4"
