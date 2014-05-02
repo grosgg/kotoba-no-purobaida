@@ -1,12 +1,6 @@
 = form_for @quiz do |f|
-  - if @quiz.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@quiz.errors.count, "error")} prohibited this quiz from being saved:"
-      ul
-        - @quiz.errors.full_messages.each do |message|
-          li = message
 
   .field
-    = f.label :index
-    = f.text_field :index
-  .actions = f.submit 'Save'
+    = f.label :questions_count
+    = f.text_field :questions_count
+  .actions = f.submit 'Save', :class => 'small button'

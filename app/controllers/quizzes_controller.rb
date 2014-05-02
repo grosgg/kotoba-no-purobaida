@@ -1,6 +1,11 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :update]
 
+  # GET /quizzes/1
+  # GET /quizzes/1.json
+  def show
+  end
+  
   # GET /quizzes/new
   def new
     @quiz = Quiz.new
@@ -10,11 +15,14 @@ class QuizzesController < ApplicationController
   # POST /quizzes.json
   def create
     @quiz = Quiz.new(quiz_params)
+    @quiz.generate_questions
 
     respond_to do |format|
       if @quiz.save
+        format.html { redirect_to @quiz }
         format.json { render action: 'show', status: :created, location: @quiz }
       else
+        format.html { render action: 'new' }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
@@ -41,6 +49,6 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:index)
+      params.require(:quiz).permit(:score, :questions_count)
     end
 end
