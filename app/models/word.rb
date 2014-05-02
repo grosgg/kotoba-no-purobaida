@@ -2,12 +2,12 @@ class Word
   include Mongoid::Document  
   include Mongoid::Search
 
-  field :english, type: String
-  field :french, type: String
+  field :english,  type: String
+  field :french,   type: String
   field :hiragana, type: String
   field :katakana, type: String
-  field :kanji, type: String
-  field :tags, type: Array, default: []
+  field :kanji,    type: String
+  field :tags,     type: Array,  default: []
   belongs_to :user
 
   validates_presence_of :english

@@ -1,4 +1,6 @@
 KotobaNoPurobaida::Application.routes.draw do
+  resources :quizzes
+
   get "dashboard/index"
   devise_for :users
   resources :tags
@@ -8,7 +10,7 @@ KotobaNoPurobaida::Application.routes.draw do
   resources :practices, only: [:new, :create]
   resources :guesses, only: [:new, :create]
   resources :dashboard, only: [:index]
-  resources :quiz, only: [:index]
+  resources :quiz, only: [:new, :create, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
