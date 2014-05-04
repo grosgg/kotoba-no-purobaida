@@ -6,6 +6,7 @@ class Quiz
   field :tags,            type: Array
   field :questions_count, type: Integer, default: 10
 
+  belongs_to :user
   embeds_many :questions
 
   def generate_questions

@@ -1,5 +1,12 @@
 class QuizzesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_quiz, only: [:show, :update]
+
+  # GET /quizzes
+  # GET /quizzes.json
+  def index
+    @quizzes = Quiz.where(:user => current_user).desc(:_id)
+  end
 
   # GET /quizzes/1
   # GET /quizzes/1.json
@@ -15,6 +22,7 @@ class QuizzesController < ApplicationController
   # POST /quizzes.json
   def create
     @quiz = Quiz.new(quiz_params)
+    @quiz.user = current_user
     @quiz.generate_questions
 
     respond_to do |format|

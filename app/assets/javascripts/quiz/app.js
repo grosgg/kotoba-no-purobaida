@@ -1,1 +1,1 @@
-var app = angular.module('KotobaApp',[]);
+var app = angular.module('KotobaApp',['quizServices']);
