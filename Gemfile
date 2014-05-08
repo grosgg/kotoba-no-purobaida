@@ -13,7 +13,8 @@ gem "pdfkit", "~> 0.5.4"
 gem "kaminari", "~> 0.15.0"
 gem "mongoid_search", "~> 0.3.2"
 
-gem 'angularjs-rails'
+gem 'angularjs-rails', '~> 1.2.16'
+gem 'angularjs-rails-resource', '~> 1.1.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

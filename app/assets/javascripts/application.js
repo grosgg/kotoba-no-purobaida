@@ -15,6 +15,7 @@
 //= require foundation
 //= require angular
 //= require angular-resource
+//= require angularjs/rails/resource
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

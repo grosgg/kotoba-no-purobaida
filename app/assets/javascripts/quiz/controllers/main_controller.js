@@ -3,7 +3,8 @@
 app.controller("MainController", ['$scope', 'Quiz',
   function($scope, Quiz){
     $scope.message = 'Bidon ou bien?';
-    var quizzes = Quiz.query();
-    console.log(quizzes);
+    Quiz.query().then(function (results) {
+      console.log(results);
+    });
   }
 ]);

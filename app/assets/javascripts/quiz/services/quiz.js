@@ -1,10 +1,10 @@
 'use strict'
 
-var quizServices = angular.module('quizServices', ['ngResource'])
+var quizServices = angular.module('quizServices', ['rails']);
 
-quizServices.factory('Quiz', ['$resource',
-  function($resource){
-    return $resource('../quizzes.json', {}, {
-      query: {method:'GET', params:{}, isArray:true}
-    });
-  }]);
+quizServices.factory('Quiz', ['railsResourceFactory', function(railsResourceFactory){
+  return railsResourceFactory({
+    url:'../quizzes',
+    name: 'quiz'
+  });
+}]);
