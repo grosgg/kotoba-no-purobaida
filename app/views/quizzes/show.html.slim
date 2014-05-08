@@ -3,5 +3,15 @@ h1 Quiz
 div [ng-app='KotobaApp']
   div [ng-controller='MainController' ng-init="init('#{@quiz._id.to_s}')"]
 
-    div [ng-repeat='question in quiz.questions']
-      | {{ question.correctAnswer }}
+    div [ng-repeat='question in quiz.questions' ng-hide='!isCurrentQuestionIndex($index)']
+      h3
+        | {{ question.originalWord }}
+
+      ul
+        li [ng-repeat='answer in question.answers' ng-click='pickAnswer(answer)']
+         | {{ answer }}
+
+    div [ng-show='isCurrentQuestionIndex(quiz.questionsCount)']
+      div
+        | Your score: {{ quiz.score }} / {{ quiz.questionsCount }}
+      div = link_to 'Done', quizzes_path

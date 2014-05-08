@@ -11,7 +11,7 @@ class Quiz
 
   def generate_questions
     while questions.count < questions_count
-      questions << Question.create_random(self)
+      Question.create_random(self, user)
     end
   end
 
