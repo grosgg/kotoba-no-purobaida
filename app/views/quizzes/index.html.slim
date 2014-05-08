@@ -1,11 +1,15 @@
 div.large-12.columns
-  h1 Listing quizzes
+  h1 Your 5 last quizzes
 
   - if @quizzes.blank?
     p You don't have any quiz generated yet.
     
   - else
-    ul
+    ul.no-bullet
       - @quizzes.each do |quiz|
-        li = quiz._id
+        li
+          span = "#{quiz.score} / #{quiz.questions_count} "
+          span = link_to 'Replay', quiz
+
+  = link_to 'New Quiz', new_quiz_path, :class => 'button'
 

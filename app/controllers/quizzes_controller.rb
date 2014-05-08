@@ -5,7 +5,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.where(:user => current_user).desc(:_id)
+    @quizzes = Quiz.where(:user => current_user).desc(:_id).limit(5)
   end
 
   # GET /quizzes/1

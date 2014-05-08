@@ -1,17 +1,21 @@
 h1 Quiz
 
 div [ng-app='KotobaApp']
-  div [ng-controller='MainController' ng-init="init('#{@quiz._id.to_s}')"]
+  div.quiz-container [ng-controller='MainController' ng-init="init('#{@quiz._id.to_s}')"]
 
-    div [ng-repeat='question in quiz.questions' ng-hide='!isCurrentQuestionIndex($index)']
-      h3
+    div.progress.large
+      span.meter [style="width: {{ currentQuestionIndex / quiz.questionsCount * 100 }}%"]
+
+    div [ng-repeat='question in quiz.questions' ng-show='isCurrentQuestionIndex($index)']
+      h1.text-center
         | {{ question.originalWord }}
 
-      ul
+      ul.no-bullet
         li [ng-repeat='answer in question.answers' ng-click='pickAnswer(answer)']
-         | {{ answer }}
+          div.button.secondary.expand
+            | {{ answer }}
 
-    div [ng-show='isCurrentQuestionIndex(quiz.questionsCount)']
-      div
+    div.text-center [ng-show='isCurrentQuestionIndex(quiz.questionsCount)']
+      h3
         | Your score: {{ quiz.score }} / {{ quiz.questionsCount }}
-      div = link_to 'Done', quizzes_path
+      = link_to 'Done', quizzes_path, :class => 'button secondary'

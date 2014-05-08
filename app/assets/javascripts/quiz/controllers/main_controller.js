@@ -3,8 +3,8 @@
 app.controller("MainController", ['$scope', 'Quiz',
   function($scope, Quiz){
     var quiz = {};
-    var currentQuestionIndex = 0;
     var score = 0;
+    $scope.currentQuestionIndex = 0;
 
     $scope.init = function(quiz_id) {
       Quiz.get(quiz_id).then(function (result) {
@@ -13,15 +13,15 @@ app.controller("MainController", ['$scope', 'Quiz',
     }
 
     $scope.pickAnswer = function(answer) {
-      if (answer == quiz.questions[currentQuestionIndex].correctAnswer) {
+      if (answer == quiz.questions[$scope.currentQuestionIndex].correctAnswer) {
         score += 1;
       }
       $scope.nextQuestion();
     }
 
     $scope.nextQuestion = function() {
-      currentQuestionIndex += 1;
-      if (currentQuestionIndex >= quiz.questionsCount) {
+      $scope.currentQuestionIndex += 1;
+      if ($scope.currentQuestionIndex >= quiz.questionsCount) {
         quiz.score = score;
         quiz.update().then(function (result) {
           quiz = result;
@@ -30,7 +30,7 @@ app.controller("MainController", ['$scope', 'Quiz',
     }
 
     $scope.isCurrentQuestionIndex = function(index) {
-      return (currentQuestionIndex == index);
+      return ($scope.currentQuestionIndex == index);
     }
   }
 ]);
