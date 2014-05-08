@@ -79,6 +79,3 @@ production:
   sessions:
     default:
       uri: <%= ENV['MONGOLAB_URI'] %>
-      options:
-        write: true
-        skip_version_check: true
