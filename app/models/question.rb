@@ -2,6 +2,7 @@ class Question
   include Mongoid::Document
   
   field :label,          type: String
+  field :original_word,  type: String
   field :wrong_answers,  type: Array
   field :correct_answer, type: String
 
@@ -9,29 +10,30 @@ class Question
 
   def self.create_random(quiz)
     schema = self.question_schemas.sample
-    label = "#{schema[0]} -> #{schema[1]}"
+    label = "#{schema[:from]} -> #{schema[:to]}"
 
-    correct_word = Word.send("with_#{schema[0]}").send("with_#{schema[1]}").sample
-    wrong_words = Word.ne(id: correct_word.id).send("with_#{schema[1]}").sample(3)
+    correct_word = Word.send("with_#{schema[:from]}").send("with_#{schema[:to]}").sample
+    wrong_words = Word.ne(id: correct_word.id).send("with_#{schema[:to]}").sample(3)
 
     self.create(
       label: label,
-      wrong_answers: wrong_words.map { |ww| ww.send("#{schema[1]}") },
-      correct_answer: correct_word.send("#{schema[1]}"),
+      original_word: correct_word.send("#{schema[:from]}"),
+      wrong_answers: wrong_words.map { |ww| ww.send("#{schema[:to]}") },
+      correct_answer: correct_word.send("#{schema[:to]}"),
       quiz: quiz
     )
   end
 
   def self.question_schemas
     [
-      [:english,  :hiragana],
-      [:english,  :katakana],
-      [:english,  :kanji],
-      [:hiragana, :english],
-      [:hiragana, :kanji],
-      [:katakana, :english],
-      [:kanji,    :english],
-      [:kanji,    :hiragana]
+      {from: :english,  to: :hiragana},
+      {from: :english,  to: :katakana},
+      {from: :english,  to: :kanji},
+      {from: :hiragana, to: :english},
+      {from: :hiragana, to: :kanji},
+      {from: :katakana, to: :english},
+      {from: :kanji,    to: :english},
+      {from: :kanji,    to: :hiragana}
     ]
   end
 end

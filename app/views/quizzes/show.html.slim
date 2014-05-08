@@ -1,5 +1,7 @@
 h1 Quiz
 
 div [ng-app='KotobaApp']
-  div [ng-controller='MainController']
-    | {{message}}
+  div [ng-controller='MainController' ng-init="init('#{@quiz._id.to_s}')"]
+
+    div [ng-repeat='question in quiz.questions']
+      | {{ question.correctAnswer }}

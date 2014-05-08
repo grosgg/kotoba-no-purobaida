@@ -4,7 +4,7 @@ var quizServices = angular.module('quizServices', ['rails']);
 
 quizServices.factory('Quiz', ['railsResourceFactory', function(railsResourceFactory){
   return railsResourceFactory({
-    url:'../quizzes',
+    url: '.',
     name: 'quiz'
   });
 }]);
