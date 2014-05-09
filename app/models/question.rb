@@ -14,11 +14,12 @@ class Question
     wrong_words = Word.where(:user => user).ne(id: correct_word.id).send("with_#{schema[:to]}").sample(3)
 
     correct_answer = correct_word.send("#{schema[:to]}")
+    answers = wrong_words.map { |ww| ww.send("#{schema[:to]}") } + [correct_answer]
 
     self.create(
       original_word: correct_word.send("#{schema[:from]}"),
       correct_answer: correct_answer,
-      answers: wrong_words.map { |ww| ww.send("#{schema[:to]}") } + [correct_answer],
+      answers: answers.shuffle,
       quiz: quiz
     )
   end
