@@ -7,7 +7,7 @@ gem 'rails', '4.1.0'
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'devise', '~> 3.2.1'
 gem 'slim-rails', '~> 2.1.4'
-gem 'foundation-rails', '~> 5.0.2.0'
+gem 'foundation-rails', '~> 5.2.2.0'
 
 gem "pdfkit", "~> 0.5.4"
 gem "kaminari", "~> 0.15.0"

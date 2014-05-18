@@ -1,15 +1,14 @@
-div.large-12.columns
-  h1 Your 5 last quizzes
+h1 Your 5 last quizzes
 
-  - if @quizzes.blank?
-    p You don't have any quiz generated yet.
-    
-  - else
-    ul.no-bullet
-      - @quizzes.each do |quiz|
-        li
-          span = "#{quiz.score} / #{quiz.questions_count} "
-          span = link_to 'Replay', quiz
+- if @quizzes.blank?
+  p You don't have any quiz generated yet.
+  
+- else
+  ul.no-bullet
+    - @quizzes.each do |quiz|
+      li
+        span = "#{quiz.score} / #{quiz.questions_count} "
+        span = link_to 'Replay', quiz
 
-  = link_to 'New Quiz', new_quiz_path, :class => 'button'
+= link_to 'New Quiz', new_quiz_path, :class => 'button'
 
