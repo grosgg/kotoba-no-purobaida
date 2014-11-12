@@ -50,16 +50,18 @@ group :test do
   gem 'database_cleaner'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+group :development do
+  gem 'spring'
+  gem 'pry-byebug'
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-gem 'rails_12factor', group: :production
+group :production, :staging do
+  gem 'unicorn'
+  gem 'execjs'
+  gem 'therubyracer'
+end
