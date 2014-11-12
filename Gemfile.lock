@@ -265,6 +265,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise (~> 3.3.0)
+  execjs
   factory_girl_rails
   foundation-rails (~> 5.2.2.0)
   jbuilder (~> 1.2)
