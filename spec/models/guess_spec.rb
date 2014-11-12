@@ -12,18 +12,18 @@ describe Guess do
     before(:each) do
       @t = Guess.new @user.id
     end
-    
+
     it 'should initialize' do
-      @t.from.should == 'english'
-      @t.to.should == 'hiragana'
+      expect(@t.from).to eq 'english'
+      expect(@t.to).to eq 'hiragana'
     end
 
     it 'should generate a hiragana guess word grid by default' do
       pg = @t.generate
 
-      pg.should be_an(Array)
-      pg.length.should == 1
-      pg.should include([@word1.english, @word1.hiragana])
+      expect(pg).to be_an(Array)
+      expect(pg.length).to eq 1
+      expect(pg).to include([@word1.english, @word1.hiragana])
     end
   end
 
@@ -34,18 +34,18 @@ describe Guess do
         to: 'english'
       }
     end
-    
+
     it 'should initialize' do
-      @t.from.should == 'katakana'
-      @t.to.should == 'english'
+      expect(@t.from).to eq 'katakana'
+      expect(@t.to).to eq 'english'
     end
 
     it 'should generate a custom guess word grid' do
       pg = @t.generate
 
-      pg.should be_an(Array)
-      pg.length.should == 1
-      pg.should include([@word3.katakana, @word3.english])
+      expect(pg).to be_an(Array)
+      expect(pg.length).to eq 1
+      expect(pg).to include([@word3.katakana, @word3.english])
     end
   end
 
@@ -56,18 +56,18 @@ describe Guess do
         to: 'kanji'
       }
     end
-    
+
     it 'should initialize' do
-      @t.from.should == 'french'
-      @t.to.should == 'kanji'
+      expect(@t.from).to eq 'french'
+      expect(@t.to).to eq 'kanji'
     end
 
     it 'should generate a custom guess word grid' do
       pg = @t.generate
 
-      pg.should be_an(Array)
-      pg.length.should == 1
-      pg.should include([@word2.french, @word2.kanji])
+      expect(pg).to be_an(Array)
+      expect(pg.length).to eq 1
+      expect(pg).to include([@word2.french, @word2.kanji])
     end
   end
 end

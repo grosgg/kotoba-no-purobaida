@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Exercice do
   it 'should include ActiveModel::Validations' do
-    Exercice.should include(ActiveModel::Validations)
+    expect(Exercice).to include(ActiveModel::Validations)
   end
 
   context 'with no params provided' do
@@ -15,7 +15,7 @@ describe Exercice do
     let(:user) { FactoryGirl.create :user }
 
     it 'should initialize' do
-      Exercice.new(user.id).should_not raise_error
+      expect { Exercice.new(user.id) }.not_to raise_error
     end
   end
 
@@ -24,13 +24,13 @@ describe Exercice do
     let(:exercice) { Exercice.new user.id }
 
     it 'should respond to :tags' do
-      exercice.should respond_to :tags
+      expect(exercice).to respond_to :tags
     end
     it 'should respond to :is_or' do
-      exercice.should respond_to :is_or
+      expect(exercice).to respond_to :is_or
     end
     it 'should respond to :pages' do
-      exercice.should respond_to :pages
+      expect(exercice).to respond_to :pages
     end
   end
 end

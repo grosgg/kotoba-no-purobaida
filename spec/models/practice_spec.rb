@@ -14,11 +14,11 @@ describe Practice do
       p = Practice.new @user.id
       pg = p.generate
 
-      pg.should be_an(Array)
-      pg.length.should == 3
-      pg.should include([@word1.english, @word1.hiragana])
-      pg.should include([@word2.english, @word2.hiragana, @word2.kanji])
-      pg.should include([@word3.english, @word3.katakana])
+      expect(pg).to be_an(Array)
+      expect(pg.length).to eq 3
+      expect(pg).to include([@word1.english, @word1.hiragana])
+      expect(pg).to include([@word2.english, @word2.hiragana, @word2.kanji])
+      expect(pg).to include([@word3.english, @word3.katakana])
     end
   end
 end
